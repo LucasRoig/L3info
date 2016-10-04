@@ -1,0 +1,190 @@
+Entiers et réels
+1.2+1;;
+This expression has type float,
+but is used with type int.
+1.2+2.3;;
+This expression has type float,
+but is used with type int.
+-2E-1+.2.;;
+- : float = 1.8
+(sqrt(4.)+.2.)/.3.5;;
+- : float = 1.14285714286
+-2 * 3;;
+- : int = -6
+2.1 +. 4.9;;
+- : float = 7.0
+sqrt 9.;;
+- : float = 3.0
+10/3;;
+- : int = 3
+10 mod 3;;
+- : int = 1
+2+3*5;;
+- : int = 17
+-(5+1)*(-2+5)+2*3;;
+- : int = -12
+
+ Booléens
+               
+ 1=2;;
+- : bool = false
+ 4<5;;
+- : bool = true
+ 4.2<4.7;;
+- : bool = true
+ (1=1)=(2<1);;
+- : bool = false
+ true=1;;
+This expression has type int,
+but is used with type bool.
+ true or false;;
+- : bool = true
+ true or false=(1=1) & (4<5);;
+- : bool = true
+ (1+2=2+1)& 4>5;;
+- : bool = false
+ 1+2=2+1 & 4>5;;
+- : bool = false
+ 1+2=2+1 or 4 > 5;;
+- : bool = true
+ 1+2=2+1 > 4 > 5;;
+This expression has type int,
+but is used with type bool.
+ 1+2=2+1 > (4 > 5);;
+- : bool = true
+ false < true;;
+- : bool = true
+4 + 1< 6 & (`a`<`h` or "debut"="fin");;
+  - : bool = true
+
+Chaînes de caractères
+               
+ "salut";;
+- : string = "salut"
+ "salut" ^ "à tous";;
+- : string = "salut\195\160 tous" Gaffe aux accents.
+ "salut" ^ " à tous";;
+- : string = "salut \195\160 tous"
+ "salut" < "bonjour";;
+- : bool = false
+ "salut" < "Salut";;
+- : bool = false / minuscule superieure a la majuscule. Ordre table ascii?
+ "A" < "a";;
+- : bool = true
+ `A` < `a`;;
+- : bool = true
+ `a`;;
+- : char = `a`
+ int_of_char(`a`);;
+- : int = 97 / Numero table Ascii
+ `a`<`b`;;
+- : bool = true
+ `a`<"bonjour";;
+This expression has type string,
+but is used with type char.
+ "a"<"bonjour";;
+- : bool = true
+ `a`^"près";;
+This expression has type char,
+but is used with type string.
+ "a"^"près";;
+- : string = "apr\195\168s"
+"12">"2";;
+  - : bool = false
+
+
+Conversion de types
+int_of_float;;  
+- : float -> int = <fun>
+int_of_float(4.0);;
+- : int = 4
+int_of_float(4.25);;
+- : int = 4
+int_of_float(-4.25);;
+- : int = -4
+int_of_float(4.25e-34);;
+- : int = 0
+string_of_int(-235);;
+- : string = "-235"
+string_of_int(55e2);;
+>             ^^^^
+This expression has type float,
+but is used with type int.
+string_of_float(55e2);;
+- : string = "5500.0"
+string_of_float(-55e-2);;
+- : string = "-0.55"
+int_of_string "345";;
+- : int = 345
+int_of_string "34.5";;
+  Uncaught exception: Failure "int_of_string"
+  Ne pas utiliser int_of_string si le string a la forme d'un float.
+float_of_string "34.5";;
+- : float = 34.5
+float_of_string "99999999999999999999999.9";;
+  - : float = 1e+23 / Valeur arrondie ?
+
+Comparaison prioritaire sur not
+not 2 > 1;;
+    - : bool = false
+    Si not etait prioritaire on aurait une erreur de typage : not 2
+
+not prioritaire sur &
+true & not false;;
+      - : bool = true
+  Si & etait prioritaire on aurait une erreur de typage
+
+not prioritaire sur ou
+false or not false;;
+- : bool = true
+
+& prioritaire sur or
+true or false & false;;
+si on commence par le & : true or (false and false) egal a true
+sinon (true or false) and false egal a false
+- : bool = true
+
+
+Donner la valeur de chaque expression 
+let x = 2;;
+x : int = 2
+let y = x + 3;;
+y : int = 5
+let x = y + 5;;
+x : int 10
+let z = y*2 in x+z+y*y;;
+  (* z = 10*)
+- : int = 45
+let x = 3 in x*x+2*x*y+4*y;;
+- : int = 59            
+let x = 1 in x=2*x;;
+- : bool = false
+let x = 0 in x=2*x;;
+- : bool = true
+
+  ;;
+let x = 5 in (* x=5 *)
+    let prod = x*x in (*prod = x*x = 25*)
+    prod + prod * prod;;
+
+let resultat = let x = 5 in (*x=5*)
+               let prod = x*x in (* prod = 25*)
+               prod + prod * prod;; (* resultat = 25 + 25 *25 = 650*)
+
+let valeur = let x = 3 and y = 4 in (*x=3 y=4*)
+          let x = x +y and y = x - y in (*x = 3+4 = 7, y = 3-4 = -1*)
+          x*x + y*y (*valeur = 7*7 + (-1)*(-1) = 50 *);;
+
+let y = 2 in valeur * valeur + 2*valeur*y;;
+
+  (*Expressions conditionnelles. Donner le type et la valeur de chaque expression*)
+
+  if(1=1) then "salut" else "au revoir";;
+
+  let x = 3 in if x < 0 then x else x*x;;
+
+    if 5>0 then 1 else "erreur";; (* Erreur, les deux expressions doivent avoir le meme type*)
+
+    let x = 3 and y = 3 in (*x=3 y=3*)
+        let y = y*x in (*y=9*)
+        if y mod 2 = 0 then "pair" else "impair";;

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SimpleDataAccessObject.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;SimpleJDBC&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">simplejdbc</a> &gt; <span class="el_source">SimpleDataAccessObject.java</span></div><h1>SimpleDataAccessObject.java</h1><pre class="source lang-java linenums">package simplejdbc;
+
+import java.sql.SQLException;
+import java.util.List;
+import javax.sql.DataSource;
+
+public class SimpleDataAccessObject {
+
+	private DataSource myDataSource;
+
+	/**
+	 *
+	 * @param myDataSource la source de données à utiliser
+	 */
+<span class="fc" id="L15">	public SimpleDataAccessObject(DataSource myDataSource) {</span>
+<span class="fc" id="L16">		this.myDataSource = myDataSource;</span>
+<span class="fc" id="L17">	}</span>
+
+	/**
+	 *
+	 * @return le nombre d'enregistrements dans la table CUSTOMER
+	 * @throws SQLException
+	 */
+	public int numberOfCustomers() throws SQLException {
+<span class="fc" id="L25">		throw new UnsupportedOperationException(&quot;Pas encore implémenté&quot;);</span>
+	}
+
+	/**
+	 *
+	 * @param customerId la clé du client à recherche
+	 * @return le nombre de bons de commande pour ce client (table PURCHASE_ORDER)
+	 * @throws SQLException
+	 */
+	public int numberOfOrdersForCustomer(int customerId) throws SQLException {
+<span class="fc" id="L35">		throw new UnsupportedOperationException(&quot;Pas encore implémenté&quot;);</span>
+	}
+
+	/**
+	 * Trouver un Customer à partir de sa clé
+	 *
+	 * @param customedID la clé du CUSTOMER à rechercher
+	 * @return l'enregistrement correspondant dans la table CUSTOMER, ou null si pas trouvé
+	 * @throws SQLException
+	 */
+	CustomerEntity findCustomer(int customedID) throws SQLException {
+<span class="fc" id="L46">		throw new UnsupportedOperationException(&quot;Pas encore implémenté&quot;);</span>
+	}
+
+	/**
+	 * Liste des clients localisés dans un état des USA
+	 *
+	 * @param state l'état à rechercher (2 caractères)
+	 * @return la liste des clients habitant dans cet état
+	 * @throws SQLException
+	 */
+	List&lt;CustomerEntity&gt; customersInState(String state) throws SQLException {
+<span class="fc" id="L57">		throw new UnsupportedOperationException(&quot;Pas encore implémenté&quot;);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
